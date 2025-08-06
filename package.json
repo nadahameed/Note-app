@@ -1,0 +1,15 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "notes and todo",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nada",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.2.5"
+  }
+}
