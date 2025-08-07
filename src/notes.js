@@ -1,47 +1,75 @@
-//notes functions
-let notes = [];
+// Notes storage (in-memory for now)
+let notes = []
 
-//create note
+// Create note function
 function createNote(title, content) {
     const newNote = {
         id: notes.length + 1,
         title: title,
         content: content,
         createdAt: new Date()
-    };
-    notes.push(newNote);
-    return newNote;
+    }
+    notes.push(newNote)
+    return newNote
 }
 
-//edit note
-function editNote(id, title, newContent) {
-    const note = notes.find(n => n.id === id);
+// Edit note function
+function editNote(id, title, content) {
+    const note = notes.find(n => n.id === id)
     if (note) {
-        note.title = title;
-        note.content = newContent;
-        return note;
+        note.title = title
+        note.content = content
+        return note
     }
-    return null;
+    return null
 }
 
-//delete note
+// Delete note function
 function deleteNote(id) {
-    const index = notes.findIndex(n => n.id === id);
+    const index = notes.findIndex(n => n.id === id)
     if (index !== -1) {
-        return notes.splice(index, 1)[0];
+        return notes.splice(index, 1)[0]
     }
-    return null;
+    return null
 }
 
-//get all notes
+// Get all notes function
 function getAllNotes() {
-    return notes;
+    return notes
 }
 
+// Get all notes sorted by most recent first
+function getAllNotesSorted() {
+    return [...notes].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+}
+
+// Get note by ID function
+function getNoteById(id) {
+    return notes.find(n => n.id === id)
+}
+
+// Search notes function (for future use)
+function searchNotes(query) {
+    const lowercaseQuery = query.toLowerCase()
+    return notes.filter(note => 
+        note.title.toLowerCase().includes(lowercaseQuery) ||
+        note.content.toLowerCase().includes(lowercaseQuery)
+    )
+}
+
+// Get notes count function
+function getNotesCount() {
+    return notes.length
+}
+
+// Export all functions
 module.exports = {
     createNote,
     editNote,
     deleteNote,
-    getAllNotes
-};
-
+    getAllNotes,
+    getAllNotesSorted,
+    getNoteById,
+    searchNotes,
+    getNotesCount
+} 
